@@ -13,9 +13,7 @@ const refs = {
 
 let timer = null;
 
-refs.startBtn.disabled = true;
-
-refs.startBtn.addEventListener('click', counterStart);
+refs.startBtn.disabled = 'true';
 
 const options = {
   enableTime: true,
@@ -24,10 +22,13 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] < new Date()) {
-      refs.startBtn.disabled = false;
+      refs.startBtn.disabled = 'true';
       Notiflix.Notify.failure('Please choose a date in the future');
+    } else {
+      refs.startBtn.removeAttribute('disabled');
     }
-    refs.startBtn.disabled = false;
+
+    // refs.startBtn.disabled = false;
   },
 };
 
@@ -75,3 +76,5 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
+
+refs.startBtn.addEventListener('click', counterStart);
